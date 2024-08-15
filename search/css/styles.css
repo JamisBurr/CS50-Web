@@ -1,0 +1,474 @@
+/* ====== Global Styles (applies to all pages) ====== */
+/* Basic styling for HTML and body to ensure full height and consistent font across the page */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;    
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background-color: #ffffff;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flex container for main content to allow footer to stick to the bottom */
+.content {
+    flex: 1;
+}
+
+/* ====== Header Styles (applies to all pages) ====== */
+/* Header styling with flex layout for proper alignment of logo and links */
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    background-color: #ffffff;
+}
+
+/* Container for header links with spacing and right alignment */
+.header-links {
+    display: flex;
+    gap: 2rem;
+    margin-left: auto; /* Pushes the links to the far right */
+    font-size: .9rem;
+}
+
+/* Styling for header links with hover effect */
+.header a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 0.9rem;
+    transition: text-decoration 0.3s ease;
+}
+
+.header a:hover {
+    text-decoration: underline; /* Show underline on hover */
+}
+
+/* ====== Footer Styles (applies to all pages) ====== */
+/* Footer styling to maintain consistency across all pages */
+.footer {
+    background-color: #f7f7f7; /* Dark blackish background color */
+    color: #000000; /* Light text color */
+    text-align: center;
+    padding: 1rem 0; /* Padding for top and bottom */
+    width: 100%;
+    font-size: 1rem;
+    flex-shrink: 0; /* Prevent the footer from shrinking */
+}
+
+/* ====== Google Search / Image Search Page Styles ====== */
+/* Logo styling for search pages with margin adjustments */
+.logo {
+    max-width: 30%; /* Adjust size as needed */
+    height: auto;
+    margin-top: 5vh;
+    margin-bottom: 2vh; /* Space below the logo */
+    display: block; /* Ensure the logo is displayed */
+}
+
+/* Search container with centered content for Google search and image search pages */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the content horizontally */
+    justify-content: center; /* Ensure everything is centered on the x-axis */
+    margin-top: 10vh;
+}
+
+/* Container for search bar with relative positioning for the icon */
+.search-bar-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Styling for the search icon within the search bar */
+.material-symbols-outlined {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: #757575; /* Adjust color as needed */
+    pointer-events: none; /* Prevent the icon from blocking clicks */
+}
+
+/* Styling for the search bar with hover and focus effects */
+.search-bar {
+    width: 100%;
+    height: 2.5rem;
+    padding: 0 1rem 0 3rem; /* Make room for the icon */
+    border-radius: 2rem;
+    border: 1px solid #dfe1e5;
+    font-size: 1rem;
+    box-sizing: border-box; /* Ensure padding does not affect width calculation */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.search-bar:hover {
+    border-color: #4285f4; /* Google blue for hover */
+    background-color: #f1f3f4; /* Light gray for hover */
+}
+
+.search-bar:focus {
+    border-color: #4285f4; /* Google blue for focus */
+    background-color: #ffffff; /* White for focus */
+    outline: none; /* Remove the default outline */
+}
+
+/* Container for buttons with center alignment and spacing */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem; /* Add space between buttons */
+    margin-top: 2vh;
+    padding-left: .9rem;
+}
+
+/* Container for image search buttons with center alignment and spacing */
+.image-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem; /* Add space between buttons */
+    margin-top: 2vh;   
+}
+
+/* Styling for search buttons with hover effect */
+.search-button {
+    background-color: #e7e9ec;
+    color: rgb(0, 0, 0);
+    border: 1px solid transparent; /* Add a transparent border by default */
+    border-radius: 0.2rem;
+    padding: .6rem 1rem; /* Adjust padding for smaller buttons */
+    font-size: .9rem;
+    cursor: pointer;
+    margin: 0 0.25rem;
+}
+
+.search-button:hover {
+    border: 1px solid #cfd0d3;    
+}
+
+/* Styling for search buttons with hover effect */
+.image-search-button {
+    background-color: #e7e9ec;
+    color: rgb(0, 0, 0);
+    border: 1px solid transparent; /* Add a transparent border by default */
+    border-radius: 0.2rem;
+    padding: .6rem 1rem; /* Adjust padding for smaller buttons */
+    font-size: .9rem;
+    cursor: pointer;
+    margin: 0 0.25rem;
+}
+
+.image-search-button:hover {
+    border: 1px solid #cfd0d3;    
+}
+
+/* ====== Advanced Search Page Styles ====== */
+/* Styling specific to the advanced search page header */
+.advanced-header {    
+    display: flex;
+    justify-content: flex-end;    
+    padding: 1.1rem 2rem;
+    background-color: #ffffff;
+}
+
+/* Styling for header links with hover effect */
+.advanced-header a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 0.9rem;
+    transition: text-decoration 0.3s ease;
+}
+
+.advanced-header a:hover {
+    text-decoration: underline; /* Show underline on hover */
+}
+
+/* Container for advanced search form with full-width layout and padding */
+.advanced-search-container {
+    display: flex;
+    width: 100%; /* Full width of the screen */
+    max-width: 900px; /* Maximum width for larger screens */
+    flex-direction: column;    
+    margin-top: 2vh;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem; /* Add right padding for symmetry */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Styling for the advanced search heading */
+.advanced-heading {
+    font-size: 1.2rem;
+    color: #ff6450;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-left: 3rem; /* Add padding to the left */
+}
+
+/* Line under the advanced search heading */
+.heading-line {
+    width: 100%;         /* Full width */
+    height: 1px;         /* Thickness of the line */
+    background-color: #d6d6d6; /* Color of the line (black) */
+    margin: 0;           /* Remove default margins */
+}
+
+/* Styling for sub-heading under advanced search */
+.sub-heading {
+    font-size: 1.1rem;
+    color: #000000;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem; /* Add padding to the left */
+    font-weight: normal;
+}
+
+/* Form group styling for advanced search with label and input alignment */
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-size: .9rem;
+    width: 100%;   
+}
+
+.form-group label {
+    width: 300px; /* Fixed width for labels */  
+    padding-left: 1.5rem; /* Add padding to the left */
+    font-size: .9rem;
+}
+
+/* Input box styling with padding and focus effect */
+.input-box {
+    width: 100%; 
+    height: 30px;   
+    border-radius: 0.3rem;
+    border: 1px solid #dfe1e5;
+    font-size: .9rem;
+    box-sizing: border-box;
+    padding-left: 10px; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus state for input box */
+.input-box:hover {
+    border-color: #669cf3; /* Change to your desired focus border color */
+    outline: none; /* Remove the default outline */
+}
+
+/* Focus state for input box */
+.input-box:focus {
+    border-color: #669cf3; /* Change to your desired focus border color */
+    outline: none; /* Remove the default outline */
+}
+
+/* Button group styling for advanced search form */
+.button-group {
+    display: flex;
+    justify-content: flex-end; /* Align the button to the right */
+    width: 100%; /* Ensure the button group takes up full width */
+    padding-right: 1.5rem; /* Add padding to the right to match the left padding */
+}
+
+/* Advanced search button styling with hover effect */
+.search-button-advanced {
+    background-color: #4285f4; /* Google blue */
+    color: #ffffff; /* White text */
+    border: 1px solid transparent;
+    border-radius: 0.2rem;
+    padding: .6rem 1rem;
+    font-size: .8rem;
+    cursor: pointer;
+    align-self: flex-end; /* Align button to the right */
+}
+
+.search-button-advanced:hover {
+    background-color: #357ae8; /* Darker blue on hover */
+    border: 1px solid #357ae8; /* Match hover border with background */
+}
+
+/* ====== Logo Theme Styles (for search/image search pages) ====== */
+.colorful-logo {
+    display: block;
+}
+
+.white-logo {
+    display: none;
+} 
+
+/* ====== Logo Theme Styles (for advanced search page) ====== */
+/* Styling for both colorful and white logos to maintain consistent sizing */
+.header-colorful-logo,
+.header-white-logo { 
+    max-height: 25px;  /* Consistent size for both light and dark themes */
+    height: auto;
+    margin-right: auto; /* Pushes the logo to the far left */
+}
+
+/* By default, show the colorful logo and hide the white logo */
+.header-colorful-logo {
+    display: block;
+}
+
+.header-white-logo {
+    display: none;
+}
+
+/* ====== Dark Theme Styles (applies to all pages) ====== */
+/* Dark theme specific styling */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #202124;
+        color: #e8eaed;
+    }
+
+    .header {
+        background-color: #202124;
+    }
+
+    .header a {
+        color: #e8eaed;
+    }
+
+    /* Search bar dark theme styling */
+    .search-bar {
+        background-color: #202124;
+        color: rgb(219, 219, 219);
+        border: 1px solid #7a7a7a;
+    }
+
+    .search-bar:hover {
+        border-color: #303134; /* Lighter blue for hover in dark mode */
+        background-color: #303134; /* Slightly lighter background for hover in dark mode */
+    }
+
+    .search-bar:focus {
+        border-color: #303134; /* Lighter blue for focus in dark mode */
+        background-color: #303134; /* Background for focus in dark mode */
+    }
+
+    /* Search button dark theme styling */
+    .search-button {
+        background-color: #313335;
+        color: #e8eaed;
+    }
+
+    .search-button:hover {
+        background-color: #313335;
+    }
+
+    /* Search button dark theme styling */
+    .image-search-button {
+        background-color: #313335;
+        color: #e8eaed;
+    }
+
+    .image-search-button:hover {
+        background-color: #313335;
+    }
+
+    /* Advanced search page dark theme styling */
+    .advanced-header {
+        background-color: #202124;
+    }
+
+    /* Styling for header links with hover effect */
+    .advanced-header a {        
+        color: #e8eaed;        
+    }
+
+    .advanced-search-container {
+        
+        color: #e8eaed;
+    }
+
+    .advanced-heading {     
+        color: #f18173;  
+    }
+
+    .sub-heading {       
+        color: #ffffff;       
+    }
+
+    /* Input box dark theme styling */
+    .input-box {
+        background-color: #202124;
+        color: #e8eaed;
+        border: 1px solid #444444;
+    }
+
+    .input-box:hover {
+        border-color: #303134; /* Lighter blue for hover in dark mode */
+        background-color: #303134; /* Slightly lighter background for hover in dark mode */
+    }
+
+    .input-box:focus {
+        border-color: #303134; /* Lighter blue for focus in dark mode */
+        background-color: #303134; /* Background for focus in dark mode */
+    }
+
+    /* Hide colorful logo and show white logo in dark theme */
+    .colorful-logo {
+        display: none;
+    }
+    
+    .white-logo {
+        display: block;
+    }    
+
+    .header-colorful-logo {
+        display: none;
+    }
+
+    .header-white-logo {
+        display: block;
+        max-height: 25px; /* Ensure the size is consistent in dark mode */
+        height: auto;
+    }
+
+    /* Icon color adjustment for dark theme */
+    .material-symbols-outlined {
+        color: #e8eaed;
+    }
+
+    /* Footer dark theme styling */
+    .footer {
+        background-color: #1a1a1a;
+        color: #e8eaed; 
+    }
+
+    /* Change the underline color below the advanced heading to black */
+    .heading-line {
+        background-color: #000000; /* Black line in dark mode */
+    }
+
+    /* Change the search button text to black in dark mode */
+    .search-button-advanced {
+        background-color: #83b0f7;
+        color: #000000; /* Black text in dark mode */
+    }
+
+    .search-button-advanced:hover {
+        background-color: #97bcf7; /* Slightly lighter gray for hover */
+        border: 1px solid #97bcf7;
+    }
+}
+
+/* ====== Responsive Styles (applies to all pages) ====== */
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
+    .search-bar {
+        width: 60%;
+        font-size: 0.9rem;
+    }
+
+    .search-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Advanced Search</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var form = document.querySelector('form');
+            var searchButton = document.querySelector('.search-button-advanced');
+
+            form.addEventListener('submit', function(event) {
+                var as_q = document.querySelector('input[name="as_q"]').value.trim();
+                var as_epq = document.querySelector('input[name="as_epq"]').value.trim();
+                var as_oq = document.querySelector('input[name="as_oq"]').value.trim();
+                var as_eq = document.querySelector('input[name="as_eq"]').value.trim();
+
+                if (as_q === "" && as_epq === "" && as_oq === "" && as_eq === "") {
+                    // Prevent form submission entirely if all fields are empty
+                    event.preventDefault();
+                    alert("Please fill in at least one field before submitting.");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="content">
+        <div class="advanced-header">
+            <!-- Colorful logo for light theme -->
+            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" class="header-colorful-logo">
+
+            <!-- White logo for dark theme -->
+            <img src="https://www.google.ca/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png" alt="Google" class="header-white-logo">
+            
+            <div class="header-links">
+                <a href="index.html">Google Search</a>
+                <a href="image_search.html">Image Search</a>
+            </div>
+        </div>
+        
+        <h1 class="advanced-heading">Advanced Search</h1>
+        <div class="heading-line"></div>
+        <div class="advanced-search-container">           
+            <h2 class="sub-heading">Find pages with...</h2>
+            <form action="https://www.google.com/search" method="GET">
+                <div class="form-group">
+                    <label>all these words:</label>
+                    <input type="text" name="as_q" class="input-box">
+                </div>
+                <div class="form-group">
+                    <label>this exact word or phrase:</label>
+                    <input type="text" name="as_epq" class="input-box">
+                </div>
+                <div class="form-group">
+                    <label>any of these words:</label>
+                    <input type="text" name="as_oq" class="input-box">
+                </div>
+                <div class="form-group">
+                    <label>none of these words:</label>
+                    <input type="text" name="as_eq" class="input-box">
+                </div>               
+                <div class="form-group button-group">
+                    <button type="submit" class="search-button-advanced">Advanced Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 Google - All rights reserved</p>
+    </div>
+</body>
+</html>
