@@ -1,0 +1,555 @@
+/* Global Styles */
+html, body {
+    background-color: #f7e8ce; /* Light background color to keep things easy on the eyes */
+    color: #000; /* Default text color for readability */
+    font-family: Arial, sans-serif; /* Using a simple, clean font */
+    height: 100%; /* Make sure the whole screen is covered */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+/* Change the background color and text color when autofill is applied */
+input:-webkit-autofill {
+    background-color: #f7e8ce !important; /* Matches input field color for consistency */
+    color: #000 !important; /* Consistent text color */
+    -webkit-box-shadow: 0 0 0 30px #f7e8ce inset !important; /* Background color to cover autofill */
+    -webkit-text-fill-color: #000 !important; /* Makes sure autofill text is readable */
+}
+
+/* Remove the default white background in Firefox */
+input:-moz-autofill {
+    background-color: #f7e8ce !important; /* Match input background */
+    color: #000 !important; /* Keeps text color consistent */
+}
+
+page-title {
+    background-color: #f7c568; /* Sets a nice contrasting background */
+    color: #000000; /* Black text for good visibility */
+    padding-left: 40px;  
+    padding-right: 30px;
+    padding-top: 25px;    
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps things spaced evenly */
+}
+
+page-title h1 {
+    font-size: 50px; /* Adjust this to change the header size */
+}
+
+.listing-title-link {
+    color: #009e0b; /* Green color for listing links */
+}
+
+/* Header and Navigation Styling */
+header {
+    background-color: #f7c568; /* Matches the description box for a cohesive look */
+    color: #000000; /* Black text to maintain contrast */
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;       
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out header elements */
+    border-bottom: 2px solid #000000; /* Adds a clear divider */
+}
+
+footer {
+    background-color: #f7c568; /* Matches the rest of the site’s color theme */
+    color: #000000; /* Black text to keep it legible */
+    padding: 40px;
+    justify-content: center; /* Centers footer content */
+    align-items: center; 
+    text-align: center; /* Centers text in the footer */
+    height: 100px; /* Fixed height for a uniform footer look */    
+    border-top: 2px solid #000000; /* Adds a border for separation */
+}
+
+/* Navigation Bar */
+nav ul {
+    list-style-type: none; /* Removes the default list bullets */
+    display: flex; /* Aligns list items in a row */
+}
+
+nav ul li a.nav-link, .listing-item a {
+    font-size: 19px; /* Font size for navigation and listings */
+    color: #9c2cbe; /* Purple link color for visibility */
+    text-decoration: none; /* Removes the default underline */
+    font-weight: bold; /* Makes the links stand out */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition for hover effects */
+}
+
+nav ul li a.nav-link:hover, .listing-item a:hover {
+    color: #000000; /* Changes color on hover for a nice effect */
+    text-decoration: underline; /* Adds an underline on hover */
+}
+
+/* Content Container Styling */
+.content-container {
+    padding-top: 40px;
+    padding-bottom: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    flex: 1; /* Fills the remaining space in the flex container */
+}
+
+/* Auth Status Styling */
+.auth-status {
+    font-size: 20px; /* Slightly larger text for emphasis */
+    color: #000; /* Standard black text color */
+    background-color: #f7c568; /* Matches the overall theme */
+    border-radius: 5px; /* Rounds the corners a bit */
+    max-width: 100%; /* Keeps it within bounds */
+    display: inline-block; /* Doesn't take up full width */
+    margin-left: auto; /* Aligns to the right */
+    padding-right: 15px;
+}
+
+
+
+/* ----- Index Page ----- */
+/* Listings Grid */
+.index-listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Responsive grid layout */
+    gap: 25px; /* Space between items for a clean look */
+    margin-top: 25px;
+}
+
+/* Listing Item */
+.listing-item {
+    display: flex; /* Makes the item a flex container */
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: space-between; /* Spaces content evenly */
+    border: 2px solid #000000; /* Solid border around each item */
+    padding: 15px; /* Adds padding inside the item */
+    background-color: #f7c568; /* Matches the theme */
+    border-radius: 8px; /* Smooth rounded corners */
+    height: 100%; /* Ensures it fills the grid cell height */
+}
+
+/* Index Listing Details */
+.index-listing-details {
+    display: flex; /* Flex container */
+    flex-direction: column; /* Stack elements vertically */
+    flex-grow: 1; /* Makes this section take available space */
+    justify-content: space-between; /* Pushes content to the edges */
+}
+
+.index-listing-details a {
+    color: #9c2cbe; /* Matches the link theme */
+    font-weight: bold; /* Makes it stand out */
+    font-size: 1rem; /* Standard readable size */
+}
+
+/* Ensure that long strings in the description are wrapped properly */
+.listing-details p {
+    word-wrap: break-word; /* Prevents text from overflowing */
+    overflow-wrap: break-word; /* Ensures compatibility with older browsers */
+    white-space: pre-wrap; /* Maintains spaces and line breaks */
+}
+
+/* Listing Image on Index Page */
+.listing-index-image {
+    width: 100%; /* Makes the image fit its container */
+    overflow: hidden; /* Prevents content overflow */
+    border-radius: 5px; /* Adds rounded corners */
+    margin-bottom: 15px;
+}
+
+/* Listing Image on Index Page */
+.listing-index-image img {
+    width: 100%; /* Stretches the image to fit */
+    height: 100%; /* Makes it cover the space evenly */
+    object-fit: cover; /* Avoids stretching or squishing */
+    border-radius: 5px; /* Smooth rounded corners */
+}
+
+
+
+/* ----- Listing Page ----- */
+/* Listing Container */
+.listing-container {
+    margin-top: 15px;
+    width: 70%; /* Keeps the listing width manageable on large screens */
+    transition: width 0.3s ease; /* Smooth adjustment when resizing */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .listing-container {
+        width: 100%; /* Full width on smaller devices for better readability */
+    }
+}
+
+/* Listing Image on Listing Page */
+.listing-page-image {
+    width: 100%; /* Makes sure the image scales correctly */
+    max-width: 800px; /* Prevents the image from becoming too large */
+    height: auto; /* Keeps the aspect ratio intact */
+    margin-right: 20px;
+    border: 2px solid #000000; /* Matches the overall style */
+    border-radius: 5px; /* Adds a slight curve to the image */
+}
+
+/* Listing Details */
+.listing-details {
+    display: flex;
+    flex-direction: column; /* Stack details vertically */
+    flex-grow: 1; /* Let the details expand naturally */
+    justify-content: space-between; /* Evenly space content for balance */
+}
+
+.listing-details p {
+    margin-bottom: 6px; /* Adds a small gap between paragraphs */
+}
+
+/* Description Box */
+.description-box {
+    background-color: #f7c568; /* Keeps the look consistent with other elements */
+    padding: 10px;
+    border: 2px solid #000000;
+    border-top: none; /* Removes the top border for a cleaner integration */
+    border-radius: 5px;
+    margin-bottom: 24px;
+    max-width: 800px; /* Aligns with the image size for uniformity */
+}
+
+.description-box p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5; /* Ensures the text is readable with enough spacing */
+}
+
+/* Watchlist Button */
+.watchlist-form {
+    margin-bottom: 24px;
+    margin-top: 6px;
+}
+
+.watchlist-form button {
+    background-color: #f7c568; /* Matches the overall color scheme */
+    color: #9c2cbe; /* Adds a contrasting pop of color */
+    border: 2px solid #000000;
+    border-radius: 5px;
+    padding: 8px 10px;
+    cursor: pointer; /* Changes cursor to indicate it's clickable */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.watchlist-form button:hover {
+    background-color: #f7c568; /* Slight color change to indicate interaction */
+    border: 2px solid #bb3ce2;
+}
+
+/* Bid Form */
+.bid-form {
+    max-width: 150px; /* Keeps the form compact and aligned */
+    margin-bottom: 15px;
+    margin-top: 6px;
+}
+
+/* Additional margin when close auction button is not present */
+.bid-form.extra-margin {
+    margin-bottom: 24px; /* Adjusts spacing when elements are missing */
+}
+
+/* Style for the bid input box */
+.bid-form input[type="number"] {
+    background-color: #f7c568; /* Matches the theme */
+    color: #000000; /* Black text for readability */
+    border: 2px solid #000000; /* Keeps styling consistent with other inputs */
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%; /* Takes up full width of the container */
+    max-width: 800px; /* Ensures the input doesn't get too large */
+    padding-top: 6px;
+    padding-left: 10px;
+    line-height: normal; /* Keeps the input text aligned properly */
+    font-size: 16px; /* Sets a comfortable text size */
+    height: 40px; /* Standard input height */
+}
+
+/* Style for the placeholder bid input box */
+.bid-form input[type="number"]::placeholder {
+    color: #999; /* Light gray placeholder text for subtlety */
+    font-style: italic; /* Differentiate placeholder text from input */
+    font-size: 16px; /* Keep the font size consistent */
+}
+
+/* Style for the bid input box on focus */
+.bid-form input[type="number"]:focus {
+    color: #000000; /* Keeps the text black when focused */
+    border-color: #9c2cbe; /* Adds a highlight on focus */
+    outline: none; /* Removes the default blue outline */
+}
+
+/* Hide the up and down arrows in number input fields */
+.bid-form input[type="number"]::-webkit-outer-spin-button,
+.bid-form input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Hides default spinner in WebKit browsers */
+    margin: 0;
+}
+
+/* Style for the bid input button */
+.bid-form button {
+    background-color: #f7c568; /* Matches the input colors */
+    color: #bb3ce2; /* Text color that contrasts well */
+    border: 2px solid #000000;
+    border-radius: 5px;
+    width: 100%; /* Full width button for better UX */
+    max-width: 800px; /* Consistent with input field width */
+    box-sizing: border-box;
+}
+
+/* The bid input button on hover */
+.bid-form button:hover {
+    background-color: #74f768; /* Changes to a green shade on hover */
+    border: 2px solid #9c2cbe;
+    color: #000000; /* Keeps the text readable */
+}
+
+.text-danger {
+    margin-top: 15px; /* Adds space above error messages */
+}
+
+/* Style for close auction form */
+.close-auction-form {
+    max-width: 150px;
+    margin-bottom: 24px; /* Keeps spacing consistent with other forms */
+}
+
+/* Style for close auction button */
+.close-auction-form button {
+    background-color: #f7c568; /* Red theme color for attention */
+    color: #bb3ce2;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.close-auction-form button:hover {
+    background-color: #f76868; /* A bit darker on hover to signal interaction */
+    border: 2px solid #9c2cbe;
+    color: #000000;
+}
+
+/* Default styling for bids header */
+.bids {
+    margin-top: 0px;
+}
+
+/* Extra margin applied when user is not signed in */
+.bids.extra-margin {
+    margin-top: 12px; /* Extra space when needed */
+}
+
+.bids-list {
+    list-style: none; /* No bullet points for a cleaner look */
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.bids-list li {
+    margin-bottom: 16px; /* Adds some space between bid items */
+}
+
+/* Comments List */
+.comments-list {
+    margin-left: 20px;
+    padding-left: 0;
+    list-style: none; /* Keeps it neat without bullets */
+}
+
+/* Reduced margin when the comment form is not present */
+.comments-list.no-comment-margin {
+    margin-bottom: 0px; /* Removes margin when comments are minimal */
+}
+
+/* Adjust the spacing between individual comments */
+.comments-list li {
+    margin-bottom: 10px; /* Space to keep comments readable */
+    line-height: 1.2; /* Helps readability with tighter spacing */
+}
+
+/* Comment Form */
+.comment-form {
+    max-width: 800px; /* Matches the description box for symmetry */
+}
+
+.comment-form textarea {
+    width: 100%; /* Takes full available width */
+    max-width: 800px; /* Consistent width with other inputs */
+    height: 150px; /* Fixed height to maintain form size */
+    resize: none; /* Prevents resizing which could break layout */
+    padding-top: 10px;
+    padding-left: 10px;
+    border: 2px solid #000; /* Keeps it in line with other forms */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #f7c568; /* Keeps colors consistent */
+    color: #000; /* Standard text color */
+}
+
+/* Style for when the textarea is focused */
+.comment-form textarea:focus {
+    background-color: #f7c568; /* Keeps the background consistent on focus */
+    border: 2px solid #9c2cbe; /* Highlight border for focus effect */
+    outline: none; /* Removes default outline */
+    color: #000; /* Keeps text color consistent */
+}
+
+.comment-form button {
+    background-color: #f7c568; /* Matching the rest of the form */
+    color: #9c2cbe; /* Adds a vibrant touch */
+    border: 2px solid #000000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Optional: Change the background color and text color slightly on hover */
+.comment-form button:hover {
+    background-color: #f7c568; /* Hover effect that subtly changes */
+    color: #333333; /* Darkens the text a bit on hover */
+    border: 2px solid #9c2cbe;
+}
+
+
+
+/* ----- Create Listing Page ----- */
+/* Create Listing Form */
+.create-listing-form {
+    background-color: #f7c568; /* Keeps form in line with site theme */
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    max-width: 800px;
+    margin-bottom: 15px; /* Spacing adjustments to fit design */
+    margin-top: 24px;
+}
+
+/* Input fields and textarea within the Create Listing Form */
+.create-listing-form input[type="text"],
+.create-listing-form input[type="number"],
+.create-listing-form input[type="file"],
+.create-listing-form input[type="password"],
+.create-listing-form input[type="email"],
+.create-listing-form textarea {
+    background-color: #f7e8ce; /* Light background to match other inputs */
+    color: #000000; /* Keeps text black for readability */
+    border: 2px solid #000000;
+    border-radius: 3px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Style for the input fields and textarea on focus */
+.create-listing-form input[type="text"]:focus,
+.create-listing-form input[type="number"]:focus,
+.create-listing-form input[type="file"]:focus,
+.create-listing-form input[type="password"]:focus,
+.create-listing-form input[type="email"]:focus,
+.create-listing-form textarea:focus {
+    background-color: #f7e8ce; /* Slight focus effect */
+    outline: none;
+    border-color: #9c2cbe; /* Highlights on focus */
+}
+
+.submit-link {
+    display: inline-block;
+    background-color: #f7c568; /* Keeps consistent with other buttons */
+    color: #9c2cbe;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-link:hover {
+    background-color: #f7c568;
+    color: #000000;
+    border: 2px solid #9c2cbe;
+}
+
+/* Larger description textarea specifically */
+#createListingForm #description {
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    width: 100%;
+    resize: vertical; /* Only allows vertical resizing */
+}
+
+
+
+/* ----- Categories Page ----- */
+/* Adjust the margins and padding for the <ul> */
+.categories-container ul {
+    margin-top: 16px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    padding-left: 25px;
+    list-style-type: disc; /* Adds bullets for styling */
+}
+
+.categories-container ul li a {
+    color: #9c2cbe;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.categories-container ul li a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+
+
+/* ----- Category Listings Page ----- */
+/* Listings Grid */
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive setup */
+    gap: 20px; /* Keeps items spaced nicely */
+    margin-top: 25px;
+}
+
+/* Listing Item */
+.listing-item {
+    border: 2px solid #000000;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    background-color: #f7c568; /* Cohesive with the rest of the design */
+}
+
+/* Listing Image on Index Page */
+.listing-index-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Listing Image on Index Page */
+.listing-index-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}

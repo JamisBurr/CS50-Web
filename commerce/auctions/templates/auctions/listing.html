@@ -1,0 +1,129 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+    <h2><b>{{ listing.title }}</b></h2>
+    <div class="listing-container">
+        {% if listing.image %}
+            <img src="{{ listing.image.url }}" alt="{{ listing.title }}" class="listing-page-image">
+        {% endif %}
+        <div class="listing-details">
+            <div class="description-box">
+                <p>{{ listing.description }}</p>
+            </div>
+            <h3><b>Details</b></h3>           
+            <p><b>Starting Bid:</b> ${{ listing.starting_bid|floatformat:2|intcomma }}</p>
+            <p><b>Current Price:</b> ${{ listing.current_price|floatformat:2|intcomma }}</p>
+            <p><b>Category:</b> <a href="{% url 'category_listings' listing.category.slug %}">{{ listing.category }}</a></p>
+            <p><b>Listed by:</b> {{ listing.user.username }}</p>
+
+            <!-- Auction status message moved here -->
+            {% if not listing.is_active %}
+                {% if is_winner %}
+                    <p class="text-success"><b>Congratulations! You won the auction.</b></p>
+                {% else %}
+                    <p class="text-danger"><b>The auction is closed.</b></p>
+                {% endif %}
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                {% if listing.is_active %}
+                    <!-- Watchlist button -->
+                    <form action="{% url 'listing' slug=listing.slug %}" method="post" class="watchlist-form">
+                        {% csrf_token %}
+                        <button type="submit" name="watchlist" class="btn btn-warning">
+                            {% if is_watching %}
+                                <b>Remove from Watchlist</b>
+                            {% else %}
+                                <b>Add to Watchlist</b>
+                            {% endif %}
+                        </button>
+                    </form>
+                {% endif %}
+    
+         
+                {% if listing.is_active %}
+
+                    <h3><b>Bidding</b></h3>
+                    
+                    <!-- Bid form -->
+                    <form action="{% url 'listing' slug=listing.slug %}" method="post" class="bid-form {% if not user == listing.user %}extra-margin{% endif %}">
+                        {% csrf_token %}
+                        <div class="form-group">                        
+                            <input type="number" 
+                                name="bid_amount" 
+                                id="bid_amount" 
+                                class="form-control" 
+                                min="{{ listing.current_price|add:'1.00' }}" 
+                                max="9999999" 
+                                maxlength="7" 
+                                required 
+                                placeholder="Enter amount...">                        
+                        </div>
+                        <button type="submit" name="bid" class="btn btn-success"><b>Bid</b></button>
+                        {% if error %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endif %}
+                    </form>
+                                        
+                {% endif %}
+
+                {% if listing.user == user and listing.is_active %}
+                    <!-- Close Auction Button -->
+                    <form action="{% url 'listing' slug=listing.slug %}" method="post" class="close-auction-form">
+                        {% csrf_token %}
+                        <button type="submit" name="close_auction" class="btn btn-danger"><b>Close Auction</b></button>
+                    </form>
+                {% endif %}       
+            {% endif %}      
+        </div>
+    </div>
+
+    <!-- Display bids -->
+    <h3 class="bids {% if not listing.is_active or listing.is_active and not user.is_authenticated %}extra-margin{% endif %}"><b>Bids</b></h3>
+
+    
+    <ul class="bids-list">
+        {% for bid in bids %}
+            <li><b>{{ bid.user.username }}</b>: ${{ bid.bid_amount|floatformat:2|intcomma }}</li>
+        {% empty %}
+            <li>No bids yet.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Comments section -->
+    <h3><b>Comments</b></h3>
+    <ul class="comments-list {% if not user.is_authenticated %}no-comment-margin{% endif %}">
+        {% for comment in comments %}
+            <li><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</li>
+        {% empty %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated and listing.is_active %}
+        <form action="{% url 'add_comment' slug=listing.slug %}" method="post" class="comment-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="content" class="form-control" placeholder="Add a comment..." maxlength="200" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><b>Comment</b></button>
+        </form>
+    {% endif %}
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const bidAmountInput = document.getElementById('bid_amount');
+    
+            // Limit the input to 7 digits and maximum value of 9,999,999
+            bidAmountInput.addEventListener('input', function() {
+                if (bidAmountInput.value.length > 7) {
+                    bidAmountInput.value = bidAmountInput.value.slice(0, 7);
+                }
+                if (parseInt(bidAmountInput.value) > 9999999) {
+                    bidAmountInput.value = 9999999;
+                }
+            });
+        });
+    </script>
+{% endblock %}

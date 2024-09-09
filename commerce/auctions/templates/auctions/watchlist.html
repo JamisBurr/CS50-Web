@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+{% load humanize %}
+
+{% block body %}
+    <h2><b>Your Watchlist</b></h2>
+    <div class="listings-grid"> 
+        {% for item in watchlist_items %}
+            <div class="listing-item"> 
+                {% if item.listing.image %}
+                    <div class="listing-index-image"> 
+                        <img src="{{ item.listing.image.url }}" alt="{{ item.listing.title }}">
+                    </div>
+                {% endif %}                
+                <div class="listing-details">
+                    <h3><b>{{ item.listing.title }}</b></h3>
+                    <p>{{ item.listing.description }}</p>              
+                    <div style="margin-top: auto;">
+                        <p style="margin-bottom: 5px;"><b>Starting Bid:</b> ${{ item.listing.starting_bid|floatformat:2|intcomma }}</p>
+                        <p style="margin-bottom: 5px;"><b>Current Price:</b> ${{ item.listing.current_price|floatformat:2|intcomma }}</p>
+                        <a href="{% url 'listing' slug=item.listing.slug %}">View Listing</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p style="margin-left: 20px;">Your watchlist is empty.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2><b>Login</b></h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post" class="create-listing-form" id="loginForm">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username"><b>Username</b></label>
+            <input autofocus class="form-control" type="text" name="username" id="username" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+            <label for="password"><b>Password</b></label>
+            <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password" required>
+        </div>        
+    </form>
+    <a href="#" id="submitLink" class="submit-link"><b>Login</b></a>
+
+    <p style="margin-top: 20px;">Don't have an account? <a href="{% url 'register' %}" style="color: #9c2cbe;">Register here.</a></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const submitLink = document.getElementById('submitLink');
+            const form = document.getElementById('loginForm');
+
+            function validateForm() {
+                let isValid = true;
+                form.querySelectorAll('input[required]').forEach(function(input) {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                    }
+                });
+                return isValid;
+            }
+
+            submitLink.style.pointerEvents = 'none';
+            submitLink.style.color = '#f7e8ce';
+
+            form.addEventListener('input', function() {
+                if (validateForm()) {
+                    submitLink.style.pointerEvents = 'auto';
+                    submitLink.style.color = '';
+                } else {
+                    submitLink.style.pointerEvents = 'none';
+                    submitLink.style.color = '#f7e8ce';
+                }
+            });
+
+            submitLink.addEventListener('click', function(event) {
+                if (validateForm()) {
+                    form.submit();
+                } else {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2><b>Create Listing</b></h2>
+    <form action="{% url 'create_listing' %}" method="post" enctype="multipart/form-data" class="create-listing-form" id="createListingForm">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title"><b>Title</b></label>
+            <input class="form-control" type="text" name="title" id="title" placeholder="Enter listing title" maxlength="30" required>
+        </div>        
+        <div class="form-group">
+            <label for="description"><b>Description</b></label>
+            <textarea class="form-control" name="description" id="description" placeholder="Enter listing description" maxlength="200" required></textarea>
+            <small id="charCount">0 / 100</small>
+        </div>
+        <div class="form-group">
+            <label for="starting_bid"><b>Starting Bid ($)</b></label>
+            <input class="form-control" type="number" name="starting_bid" id="starting_bid" step="0.01" min="0" max="999999" maxlength="6" placeholder="Enter starting bid" required>
+        </div>
+        <div class="form-group">
+            <label for="image"><b>Upload Image</b></label>
+            <input class="form-control-file" type="file" name="image" id="image" required>
+        </div>
+        <div class="form-group">
+            <label for="category"><b>Category (optional)</b></label>
+            <input class="form-control" type="text" name="category" id="category" placeholder="Enter category" maxlength="30">
+        </div>        
+    </form>
+    <!-- The submit link instead of a button -->
+    <a href="#" id="submitLink" class="submit-link"><b>Create Listing</b></a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const submitLink = document.getElementById('submitLink');
+            const form = document.getElementById('createListingForm');
+            const descriptionInput = document.getElementById('description');
+            const startingBidInput = document.getElementById('starting_bid');
+            const charCount = document.getElementById('charCount');
+
+            // Function to check if all required fields are filled, including the file input
+            function validateForm() {
+                let isValid = true;
+                form.querySelectorAll('input[required], textarea[required]').forEach(function(input) {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                    }
+                });
+                return isValid;
+            }
+
+            // Disable the submit link initially
+            submitLink.style.pointerEvents = 'none';
+            submitLink.style.color = '#f7e8ce'; // Use the desired color
+
+            // Event listener to enable/disable the submit link based on form validity
+            form.addEventListener('input', function() {
+                if (validateForm()) {
+                    submitLink.style.pointerEvents = 'auto';
+                    submitLink.style.color = ''; // Reset to default link color
+                } else {
+                    submitLink.style.pointerEvents = 'none';
+                    submitLink.style.color = '#f7e8ce'; // Use the desired color
+                }
+            });
+
+            // Event listener for the submit link
+            submitLink.addEventListener('click', function(event) {
+                if (validateForm()) {
+                    form.submit();
+                } else {
+                    event.preventDefault();
+                }
+            });
+
+            // Update character count as the user types
+            descriptionInput.addEventListener('input', function() {
+                const currentLength = descriptionInput.value.length;
+                const maxLength = descriptionInput.maxLength;
+                charCount.textContent = `${currentLength} / ${maxLength}`;
+            });
+            
+            // Limit the number of digits in the starting bid
+            startingBidInput.addEventListener('input', function() {
+                if (startingBidInput.value.length > 6) {
+                    startingBidInput.value = startingBidInput.value.slice(0, 6);
+                }
+            });    
+        });
+    </script>
+{% endblock %}
