@@ -1,0 +1,77 @@
+{% extends "network/layout.html" %}
+
+{% block title %}
+    {{ profile_user.username }}'s Profile
+{% endblock %}
+
+{% block body %}
+    <!-- Profile Page Header -->
+    <h3 class="page-header">{{ profile_user.username }}'s Profile</h3>
+
+    <!-- Profile Page Header -->
+    <div id="profile-info" class="{% if not user.is_authenticated or user == profile_user %}custom-margin{% endif %}">
+        <p><strong>Followers:</strong> <span id="follower-count">{{ follower_count }}</span></p>
+        <p><strong>Following:</strong> {{ following_count }}</p>
+    </div>
+    
+
+    <!-- Follow/Unfollow Button for Logged-In Users Viewing Another User's Profile -->
+    {% if user.is_authenticated and user != profile_user %}
+    <div class="follow-btn-container mb-4">
+        <!-- Follow button with dynamic styling based on follow status -->
+        <button id="follow-btn" class="btn btn-sm 
+            {% if is_following %} btn-success {% else %} btn-outline-primary {% endif %}" 
+            data-username="{{ profile_user.username }}">
+            {% if is_following %}
+                Unfollow (<span id="follower-count">{{ follower_count }}</span>)
+            {% else %}
+                Follow (<span id="follower-count">{{ follower_count }}</span>)
+            {% endif %}
+        </button>
+    </div>
+    {% endif %}
+
+
+    <!-- User's Posts Section Header -->
+    <h4 class="page-header">{{ profile_user.username }}'s Posts</h4>
+
+    <!-- Posts List Section -->
+    <div id="all-posts">
+        {% for post in posts %}
+            <div class="post mb-3 p-3 border rounded">
+                <strong>{{ post.user.username }}</strong> - <small>{{ post.timestamp }}</small>
+                <p id="post-content-{{ post.id }}" class="post-content">{{ post.content }}</p>
+
+                <!-- Like/Unlike Button with Dynamic Like Status -->
+                <button class="btn btn-sm 
+                    {% if user in post.likes.all %} btn-success {% else %} btn-outline-primary {% endif %} 
+                    like-btn" 
+                    data-post-id="{{ post.id }}" 
+                    data-url-like="{% url 'like_post' post.id %}">
+                    {% if user in post.likes.all %}
+                        Unlike (<span id="likes-count-{{ post.id }}">{{ post.likes.count }}</span>)
+                    {% else %}
+                        Like (<span id="likes-count-{{ post.id }}">{{ post.likes.count }}</span>)
+                    {% endif %}
+                </button>
+
+                <!-- Edit Button for User's Own Posts -->
+                {% if user == post.user %}
+                <button class="btn btn-sm btn-outline-secondary edit-btn" data-post-id="{{ post.id }}">
+                    Edit
+                </button>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination Controls for Navigating Posts -->
+    <div class="pagination">
+        {% if posts.has_previous %}
+        <a class="btn btn-sm btn-secondary" href="?page={{ posts.previous_page_number }}">Previous</a>
+        {% endif %}
+        {% if posts.has_next %}
+        <a class="btn btn-sm btn-secondary" href="?page={{ posts.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% endblock %}

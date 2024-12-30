@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class='bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100  p-5 md:pt-8 md:pb-14 md:px-20 lg:px-40 xl:px-60'>        
+    <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Contact</p>
+    <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-900 py-5 pl-6 pr-5 rounded-lg'>
+        <!-- Rounded Gradient Border -->
+        <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; 
+                    background: linear-gradient(to bottom, #ffbd72, #fcf6a1);"></div>
+        <!-- Content -->
+        <p style="font-family: Poppins-Bold" class="text-gray-700 dark:text-gray-300">
+            If you'd like to get in touch, feel free to reach out using the methods below.
+        </p>
+        
+        
+        <ul class="pt-3">
+            <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-300 to-blue-600">Email</p>
+            <a href="mailto:jamisburr@gmail.com" style="font-family: 'Poppins-Bold';" class="text-yellow-200 dark:text-yellow-200 hover:underline">Send email →</a></li>
+
+            <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-300 to-blue-600 pt-3">LinkedIn</p>
+            <a href="https://www.linkedin.com/in/jamis-burr-67ba592a8" target="_blank" style="font-family: 'Poppins-Bold';" class="text-yellow-200 dark:text-yellow-200 hover:underline">View Page →</a></li>
+
+            <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-300 to-blue-600 pt-3">GitHub</p>
+            <a href="https://github.com/JamisBurr" target="_blank" style="font-family: 'Poppins-Bold';" class="text-yellow-200 dark:text-yellow-200 hover:underline">View Page →</a></li>
+
+            <p>{{ final_project }}</p>
+        </ul>
+    </div>             
+</div>
+{% endblock %}

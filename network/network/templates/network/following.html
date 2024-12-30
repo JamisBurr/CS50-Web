@@ -1,0 +1,51 @@
+{% extends "network/layout.html" %}
+
+{% block title %}
+    Following
+{% endblock %}
+
+{% block body %}
+    <!-- Page Header -->
+    <h4 class="page-header">Following Posts</h4>
+
+    <!-- Posts Section -->
+    <div id="all-posts">
+        {% for post in page_obj %}
+            <div class="post mb-3 p-3 border rounded">
+                <a href="{% url 'profile' post.user.username %}"><strong>{{ post.user.username }}</strong></a> - <small>{{ post.timestamp }}</small>
+                <p id="post-content-{{ post.id }}" class="post-content">{{ post.content }}</p>
+
+                <!-- Display Like/Unlike button based on whether the user has already liked the post -->
+                <button class="btn btn-sm 
+                    {% if user in post.likes.all %} btn-success {% else %} btn-outline-primary {% endif %} 
+                    like-btn" 
+                    data-post-id="{{ post.id }}" 
+                    data-url-like="{% url 'like_post' post.id %}">
+                    {% if user in post.likes.all %}
+                        Unlike (<span id="likes-count-{{ post.id }}">{{ post.likes.count }}</span>)
+                    {% else %}
+                        Like (<span id="likes-count-{{ post.id }}">{{ post.likes.count }}</span>)
+                    {% endif %}
+                </button>
+
+                {% if user == post.user %}
+                <button class="btn btn-sm btn-outline-secondary edit-btn" 
+                    data-post-id="{{ post.id }}">
+                    Edit
+                </button>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a class="btn btn-sm btn-secondary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <a class="btn btn-sm btn-secondary" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+
+{% endblock %}

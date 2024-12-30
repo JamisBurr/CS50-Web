@@ -1,0 +1,82 @@
+{% extends "network/layout.html" %}
+
+{% block title %}
+    All Posts
+{% endblock %}
+
+{% block body %}
+    <!-- New Post Creation Section (Visible Only to Authenticated Users) -->
+    {% if user.is_authenticated %}
+    <h4 class="page-header">Create a New Post</h4>
+    <div class="new-post mb-4 p-3 border rounded">
+        <form id="new-post-form" method="POST">
+            {% csrf_token %}
+            <textarea id="post-content" name="content" class="form-control" rows="3" placeholder="What's on your mind?"></textarea>
+            <button type="submit" class="btn btn-sm btn btn-primary mt-1 post-button">Post</button>
+        </form>
+    </div>
+    {% endif %}
+
+    <!-- Header for All Posts Section -->
+    <h4 class="page-header">All Posts</h4>
+
+    <!-- Posts Display Section -->    
+    <div id="all-posts">
+        {% for post in page_obj %}
+            <div class="post mb-3 p-3 border rounded">
+                <!-- Post Username with Link to Profile and Timestamp -->
+                <a href="{% url 'profile' post.user.username %}"><strong>{{ post.user.username }}</strong></a> - <small>{{ post.timestamp }}</small>
+                <p id="post-content-{{ post.id }}" class="post-content">{{ post.content }}</p>
+
+                <!-- Like/Unlike Button with Dynamic Styling Based on User Like Status -->
+                <button class="btn btn-sm 
+                    {% if user in post.likes.all %} btn-success {% else %} btn-outline-primary {% endif %} 
+                    like-btn" 
+                    data-post-id="{{ post.id }}" 
+                    data-url-like="{% url 'like_post' post.id %}">
+                    {% if user in post.likes.all %}
+                        Unlike (<span id="likes-count-{{ post.id }}">{{ post.likes.count }}</span>)
+                    {% else %}
+                        Like (<span id="likes-count-{{ post.id }}">{{ post.likes.count }}</span>)
+                    {% endif %}
+                </button>
+
+                <!-- Edit Button for User's Own Posts Only -->
+                {% if user == post.user %}
+                <button class="btn btn-sm btn-secondary edit-btn" data-post-id="{{ post.id }}">
+                    Edit
+                </button>
+                {% endif %}
+            </div>
+        {% empty %}
+        <!-- Message When No Posts are Available -->
+        <p>No posts to show.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination Controls for Navigating Through Posts -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo; Previous</span>
+                </a>
+            </li>
+            {% endif %}
+
+            <!-- Current Page Indicator -->
+            <li class="page-item">
+                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </li>
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">Next &raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}

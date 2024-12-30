@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Problem Set Section -->
+<div class='bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 pt-8 px-5 md:px-20 lg:px-40 xl:px-60'>   
+    <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>{{ final_project.title }}</p>
+    <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-900 py-5 pl-6 pr-5 rounded-lg'>
+        <!-- Rounded Gradient Border -->
+        <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; 
+                    background: linear-gradient(to bottom, #ffbd72, #fcf6a1);">
+        </div>
+        <!-- Description Section -->        
+        <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-300 to-blue-600">Description:</p>
+        <p style="font-family: Poppins-Bold" class="text-gray-700 dark:text-gray-300 pt-2">{{ final_project.description }}</p> 
+        <p style="font-family: Poppins-Bold" class="pt-4 font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-300 to-blue-600">Technologies used</p>
+        <div class='flex flex-wrap gap-2 pt-3'>
+            {% for tech in final_project.technologies.all %}
+            <span class='text-xs bg-gradient-to-r from-cyan-500 to-blue-500 py-1 px-4 rounded-full'>
+                <i class="{{ tech.icon }}"></i> {{ tech.name }}
+            </span>
+            {% endfor %}       
+        </div>      
+
+        <!-- Video Section -->
+        {% if final_project.video_url %}
+        <div class="pt-6">
+            <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-300 to-blue-600 mb-3">Project Video</p>
+            <div class="relative pt-[56.25%]">
+                <iframe 
+                    class="absolute top-0 left-0 w-full h-full rounded-lg"
+                    src="{{ final_project.embed_url }}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        {% endif %}
+        <a href="/courses/{{ course.slug }}/" style="font-family: 'Poppins-Bold';" class="text-yellow-200 pt-5 hover:underline block">← Back to {{ course.name }}</a>             
+    </div>      
+</div>
+
+<!-- Submissions Section -->
+<div class='bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 pt-8 pb-14 px-5 md:px-20 lg:px-40 xl:px-60'>   
+    <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Submissions</p>     
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for submission in submissions %}
+        <div style="box-shadow: 0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
+            <!-- Rounded Gradient Border -->
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; 
+                        background: linear-gradient(to bottom, #ffbd72, #fcf6a1);">
+            </div>                  
+
+            <!-- Submission Title -->
+            <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-300 to-blue-600">{{ submission.title }}</p>
+
+            <!-- Submission Description -->
+            <p style="font-family: Poppins-Bold" class="text-gray-700 dark:text-gray-300 pt-2 flex-grow">{{ submission.description }}</p>
+            
+            <!-- Submission Link -->
+            {% if submission.submission_link %}
+            <a href="{{ submission.submission_link }}" target="_blank" style="font-family: 'Poppins-Bold';" class="text-yellow-200 pt-4 hover:underline block">View GitHub →</a>
+            {% endif %}
+        </div>        
+        {% endfor %}
+    </div>    
+</div>
+{% endblock %}
