@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<div class='bg-gray-300 dark:bg-gray-800 text-black dark:text-gray-100 p-5 md:pt-8 md:pb-14 md:px-20 lg:px-40 xl:px-60'>
+    <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Level 2: The Digital Cipher</p>
+    <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-400 dark:bg-gray-900 py-5 pl-6 pr-4 rounded-lg'>
+        <!-- Rounded Gradient Border -->
+        <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+            background: linear-gradient(to bottom, #5062ff, #b1abfc);" 
+            class="dark:hidden">
+        </div>
+
+        <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+            background: linear-gradient(to bottom, #fae294, #ffad50);" 
+            class="hidden dark:block">
+        </div>
+
+        <!-- Card Content -->
+        <p style="font-family: Poppins" class="text-black dark:text-gray-300 pt-2">
+            Enter numbers to decode the remainder pattern modulo 37.
+        </p>
+        
+        <!-- Hidden CSRF Token -->
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+        <input type="number" id="cipher-input" class="border rounded px-4 py-2 w-full mt-4" placeholder="Enter a number here" />
+        <button id="submit-answer" class="bg-blue-500 px-4 py-2 rounded mt-4">Submit</button>
+        <p id="feedback" class="mt-4 text-red-500 hidden"></p>
+    </div>
+</div>
+<script src="{% static 'js/level2.js' %}"></script>
+{% endblock %}

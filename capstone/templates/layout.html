@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
+    <link rel="prefetch" href="{{ final_project.embed_url }}">
 
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -18,10 +19,10 @@
     <link href="{% static 'css/custom.css' %}" rel="stylesheet">
     <link href="{% static 'css/index.css' %}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
     <!-- Navbar -->
-    <nav class="nav bg-red-950 dark:bg-gray-900 text-white flex justify-between items-center p-3 px-8 md:px-20">
+    <nav class="nav bg-gray-400 dark:bg-gray-900 text-black dark:text-white flex justify-between items-center p-3 px-8 md:px-20">
         <!-- Logo / Title -->
         <p class="text-lg font-mono">Jamis Burr</p>
 
@@ -32,10 +33,11 @@
 
         <!-- Desktop Navigation Links -->
         <div class="hidden md:block text-gray-900 dark:text-gray-100">
-            <a href="/" class="p-2 px-3 my-1 text-white rounded-[8px] hover:bg-black dark:hover:bg-gray-800">Home</a>
-            <a href="/courses/" class="p-2 px-3 my-1 text-white rounded-[8px] hover:bg-black dark:hover:bg-gray-800">Courses</a>
-            <a href="/about" class="p-2 px-3 my-1 text-white rounded-[8px] hover:bg-black dark:hover:bg-gray-800">About</a>
-            <a href="/contact/" class="p-2 px-3 my-1 text-white rounded-[8px] hover:bg-black dark:hover:bg-gray-800">Contact</a>
+            <a href="/" class="p-2 px-3 my-1 text-black dark:text-white rounded-[8px] hover:bg-gray-300 dark:hover:bg-gray-800">Home</a>
+            <a href="/courses/" class="p-2 px-3 my-1 text-black dark:text-white rounded-[8px] hover:bg-gray-300 dark:hover:bg-gray-800">Courses</a>
+            <a href="/about" class="p-2 px-3 my-1 text-black dark:text-white rounded-[8px] hover:bg-gray-300 dark:hover:bg-gray-800">About</a>
+            <a href="/contact/" class="p-2 px-3 my-1 text-black dark:text-white rounded-[8px] hover:bg-gray-300 dark:hover:bg-gray-800">Contact</a>
+            <a href="/level-one/" class="p-2 px-3 my-1 text-black dark:text-white rounded-[8px] hover:bg-gray-300 dark:hover:bg-gray-800">Cipher</a>
         </div>
     </nav>
 
@@ -45,35 +47,46 @@
         <a href="/courses/" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-black dark:hover:bg-gray-800">Courses</a>
         <a href="/about" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-black dark:hover:bg-gray-800">About</a>
         <a href="/contact" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-black dark:hover:bg-gray-800">Contact</a>
+        <a href="/cipher" class="p-2 px-36 my-1 text-white rounded-[8px] hover:bg-black dark:hover:bg-gray-800">Cipher</a>
     </div>
 
     <!-- Main Content -->
     {% block content %}{% endblock %}
 
     <!-- Footer -->
-    <footer class="bg-red-950 dark:bg-gray-900 text-white p-4 pb-2 grid md:grid-cols-3 md:gap-10 lg:gap-20 xl:gap-30 2xl:gap-40 md:px-40">
-        <div class="portfolio-name">
-            <p class="text-xl font-bold">Jamis Burr</p>
-            <p class="my-3 text-justify">This portfolio showcases my work and resume, offering insights into my skills and professional journey.</p>
-        </div>
-        <div class="pages">
-            <p class="text-xl font-bold">Pages</p>
-            <ul class="my-3">
-                <li><a href="/" class="hover:text-blue-300"><i class="bi bi-arrow-right-short"></i> Privacy Policy</a></li>
-                <li><a href="/" class="hover:text-blue-300"><i class="bi bi-arrow-right-short"></i> Disclaimer</a></li>
-            </ul>
-        </div>
-        <div class="socials">
-            <p class="text-xl font-bold">Follow me</p>
-            <ul class="my-3 flex text-xl">
-                <li><a href="/" class="hover:text-blue-100"><i class="bi bi-github"></i></a></li>
-                <li class="px-2"><a href="/" class="hover:text-blue-100"><i class="bi bi-linkedin"></i></a></li>
-            </ul>
+    <footer class="bg-gray-400 dark:bg-gray-900 text-gray-900 dark:text-gray-300 p-6 md:px-20 lg:px-40 xl:px-60 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Portfolio Name Section -->
+            <div class="portfolio-name max-w-sm">
+                <p class="text-lg md:text-xl font-bold">Jamis Burr</p>
+                <p class="my-3 text-sm md:text-base text-justify">
+                    This portfolio showcases my work and resume, offering insights into my skills and professional journey.
+                </p>
+            </div>
+        
+            <!-- Pages Section -->
+            <div class="pages max-w-sm">
+                <p class="text-lg md:text-xl font-bold">Pages</p>
+                <ul class="my-3 space-y-2">
+                    <li><a href="/" class="hover:text-blue-300 text-sm md:text-base"><i class="bi bi-arrow-right-short"></i> Privacy Policy</a></li>
+                    <li><a href="/" class="hover:text-blue-300 text-sm md:text-base"><i class="bi bi-arrow-right-short"></i> Disclaimer</a></li>
+                </ul>
+            </div>
+        
+            <!-- Social Links Section -->
+            <div class="socials max-w-sm">
+                <p class="text-lg md:text-xl font-bold">Follow Me</p>
+                <ul class="my-3 flex space-x-4 text-lg">
+                    <li><a href="/" class="hover:text-blue-100"><i class="bi bi-github"></i></a></li>
+                    <li><a href="/" class="hover:text-blue-100"><i class="bi bi-linkedin"></i></a></li>
+                </ul>
+            </div>
         </div>
     </footer>
+    
 
     <!-- Copyright Section -->
-    <div class="bg-gray-100 dark:bg-slate-800 text-black dark:text-white text-justify flex justify-center items-center">
+    <div class="bg-gray-200 dark:bg-slate-800 text-black dark:text-white text-justify flex justify-center items-center">
         <p class="p-2">Copyright &copy;<script>document.write(new Date().getFullYear())</script> 
             <span class="text-red-600 dark:text-blue-300 text-justify"><a href="/" target="_blank">Jamis Burr</a></span> All Rights Reserved
         </p>

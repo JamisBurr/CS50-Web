@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Course, Certificate, Lab, ProblemSet, Project, FinalProject, Submission  # Updated imports
 from django.views.decorators.cache import cache_page
+from django.http import JsonResponse
 
 # Home/Portfolio page
 @cache_page(60 * 60)  # Cache for 1 hour
@@ -119,3 +120,25 @@ def about(request):
 @cache_page(60 * 60)
 def contact(request):
     return render(request, 'contact.html')
+
+def level_one(request):
+    # Initialize session for level if it doesn't exist
+    if 'level' not in request.session:
+        request.session['level'] = 1  # Set default level
+    return render(request, 'level_one.html')
+
+def advance_level(request):
+    if request.method == "POST":
+        current_level = request.session.get('level', 1)
+        if current_level == 1:
+            request.session['level'] = 2  # Advance to Level 2
+            return JsonResponse({'success': True})
+        return JsonResponse({'error': 'You are not on the right level!'}, status=400)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+def level_two(request):
+    # Check if the user has completed Level 1
+    if request.session.get('level', 1) < 2:  # Default to Level 1 if no session key exists
+        return redirect('level_one')  # Redirect to Level 1
+    return render(request, 'level_two.html')  # Render Level 2 page

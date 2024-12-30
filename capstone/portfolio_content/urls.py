@@ -13,6 +13,10 @@ urlpatterns = [
     path('courses/<slug:course_slug>/final-projects/<slug:final_project_slug>/', views.final_project_details, name='final_project_details'),  # Final Project detail page
     path('about/', views.about, name='about'),  # About page
     path('contact/', views.contact, name='contact'),  # Contact page
+
+    path('level-one/', views.level_one, name='level_one'),
+    path('advance-level/', views.advance_level, name='advance_level'),
+    path('level-two/', views.level_two, name='level_two'),  # Add views for other levels
 ]
 
 if settings.DEBUG:

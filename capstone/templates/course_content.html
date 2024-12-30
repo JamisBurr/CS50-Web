@@ -4,10 +4,10 @@
 
 <div class='bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 pt-8 px-5 md:px-20 lg:px-40 xl:px-60'>   
     <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>{{ course.name }}</p>
-    <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-red-950 dark:bg-gray-900 py-5 pl-6 pr-4 rounded-lg'>
+    <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-400 dark:bg-gray-900 py-5 pl-6 pr-4 rounded-lg'>
         <!-- Rounded Gradient Border -->
         <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
-            background: linear-gradient(to bottom, #ff72bd, #72bdff);" 
+            background: linear-gradient(to bottom, #5062ff, #b1abfc);" 
             class="dark:hidden">
         </div>
 
@@ -16,21 +16,21 @@
             class="hidden dark:block">
         </div> 
         <!-- Description Section -->        
-        <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-amber-300 to-amber-600 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">Description</p>
-        <p style="font-family: Poppins" class="text-white dark:text-gray-300 dark:text-gray-300 pt-2">{{ course.description }}</p> 
-        <p style="font-family: Poppins-Bold" class="pt-4 font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-amber-300 to-amber-600 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">Technologies</p>
+        <p style="font-family: Poppins-Bold" class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-amber-400 to-amber-700 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">Description</p>
+        <p style="font-family: Poppins" class="text-gray-900 dark:text-gray-300 pt-2">{{ course.description }}</p> 
+        <p style="font-family: Poppins-Bold" class="pt-4 text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-amber-400 to-amber-700 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">Technologies</p>
 
          <!-- Updated Technologies Section -->
          <div class='flex flex-wrap gap-2 pt-3 pb-1'>
             {% for tech in course.technologies.all %}
-            <span class='text-xs bg-gradient-to-r from-amber-500 to-green-300 dark:from-blue-500 dark:to-purple-500 py-1 px-4 rounded-full'>
+            <span class='text-xs bg-gradient-to-r from-red-400 to-purple-400 dark:from-blue-500 dark:to-purple-500 py-1 px-4 rounded-full'>
                 <i class="{{ tech.icon }}"></i> {{ tech.name }}
             </span>
             {% endfor %}       
         </div>
 
             <!-- Back to Course Link -->
-            <a href="/courses/" style="font-family: 'Poppins-Bold';" class="text-purple-400 dark:text-yellow-200 pt-4 hover:underline block">← Back to Courses</a>
+            <a href="/courses/" style="font-family: 'Poppins';" class="text-blue-600 dark:text-yellow-200 pt-4 hover:underline block">← Back to Courses</a>
              
     </div>
     {% if certificates|length > 0 %}
@@ -40,10 +40,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {% for certificate in certificates %}
             <!-- Rounded Gradient Border -->
-            <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-red-950 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
+            <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-400 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
                 <!-- Rounded Gradient Border -->
                 <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
-                    background: linear-gradient(to bottom, #ff72bd, #72bdff);" 
+                    background: linear-gradient(to bottom, #5062ff, #b1abfc);" 
                     class="dark:hidden">
                 </div>
 
@@ -51,11 +51,11 @@
                     background: linear-gradient(to bottom, #fae294, #ffad50);" 
                     class="hidden dark:block">
                 </div> 
-                <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-amber-300 to-amber-600 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">{{ certificate.title }}</p>
+                <p style="font-family: Poppins-Bold" class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-red-400 to-red-700 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">{{ certificate.title }}</p>
                 {% if certificate.description %}
-                <p style="font-family: Poppins-Bold" class="text-white dark:text-gray-300 pt-2 flex-grow">{{ certificate.description }}</p>
+                <p style="font-family: Poppins" class="text-gray-900 dark:text-gray-300 pt-2 flex-grow">{{ certificate.description }}</p>
                 {% endif %}
-                <a href="{{ certificate.file.url }}" target="_blank" style="font-family: 'Poppins-Bold';" class="text-purple-400 dark:text-yellow-200 hover:underline block pt-4">
+                <a href="{{ certificate.file.url }}" target="_blank" style="font-family: 'Poppins';" class="text-blue-600 dark:text-yellow-200 hover:underline block pt-4">
                     View Certificate →
                 </a>
             </div>
@@ -71,11 +71,17 @@
     <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Labs</p>     
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-5 md:px-0">
         {% for lab in labs %}
-        <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-red-950 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
+        <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-400 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
             <!-- Rounded Gradient Border -->
-            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; 
-                        background: linear-gradient(to bottom, #ffbd72, #fcf6a1);">
-            </div>                
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+            background: linear-gradient(to bottom, #5062ff, #b1abfc);" 
+            class="dark:hidden">
+            </div>
+
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+                background: linear-gradient(to bottom, #fae294, #ffad50);" 
+                class="hidden dark:block">
+            </div>              
 
             <!-- Lab Screenshot -->
             {% if lab.screenshot_url %}
@@ -83,19 +89,19 @@
             {% endif %}            
 
             <!-- Lab Title -->
-            <p style="font-family: Poppins-Bold" class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-amber-300 to-amber-600 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">
+            <p style="font-family: Poppins-Bold" class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-amber-400 to-amber-700 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">
                 {{ lab.title }}
             </p>
 
             <!-- Lab Description -->
-            <p style="font-family: Poppins-Bold" class="text-white dark:text-gray-300 pt-2 flex-grow">
+            <p style="font-family: Poppins" class="text-gray-900 dark:text-gray-300 pt-2 flex-grow">
                 {{ lab.description }}
             </p>
 
             <!-- View Lab Link -->
             <a href="/courses/{{ course.slug }}/labs/{{ lab.slug }}/" 
-               style="font-family: 'Poppins-Bold';" 
-               class="text-purple-400 dark:text-yellow-200 hover:underline block pt-4">
+               style="font-family: 'Poppins';" 
+               class="text-blue-600 dark:text-yellow-200 hover:underline block pt-4">
                View Lab →
             </a>
         </div>
@@ -111,11 +117,17 @@
     <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Problem Sets</p>     
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-5 md:px-0">
         {% for problem_set in problem_sets %}
-        <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-red-950 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
+        <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-400 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
             <!-- Rounded Gradient Border -->
-            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; 
-                        background: linear-gradient(to bottom, #ffbd72, #fcf6a1);">
-            </div>                
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+            background: linear-gradient(to bottom, #5062ff, #b1abfc);" 
+            class="dark:hidden">
+            </div>
+
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+                background: linear-gradient(to bottom, #fae294, #ffad50);" 
+                class="hidden dark:block">
+            </div>               
 
                <!-- Problem Set Screenshot -->
             {% if problem_set.screenshot_url %}
@@ -124,19 +136,19 @@
 
 
             <!-- Problem Set Title -->
-            <p style="font-family: Poppins-Bold" class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-amber-300 to-amber-600 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">
+            <p style="font-family: Poppins-Bold" class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-red-400 to-red-700 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">
                 {{ problem_set.title }}
             </p>
 
             <!-- Problem Set Description -->
-            <p style="font-family: Poppins-Bold" class="text-white dark:text-gray-300 pt-2 flex-grow">
+            <p style="font-family: Poppins" class="text-gray-900 dark:text-gray-300 pt-2 flex-grow">
                 {{ problem_set.description }}
             </p>
 
             <!-- View Problem Set Link -->
             <a href="/courses/{{ course.slug }}/problem-sets/{{ problem_set.slug }}/" 
-               style="font-family: 'Poppins-Bold';" 
-               class="text-purple-400 dark:text-yellow-200 hover:underline block pt-4">
+               style="font-family: 'Poppins';" 
+               class="text-blue-600 dark:text-yellow-200 hover:underline block pt-4">
                View Problem Set →
             </a>
         </div>
@@ -151,11 +163,17 @@
     <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Project</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-5 md:px-0">
         {% for project in projects %}
-        <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-red-950 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
+        <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-400 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
             <!-- Rounded Gradient Border -->
-            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; 
-                        background: linear-gradient(to bottom, #ffbd72, #fcf6a1);">
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+            background: linear-gradient(to bottom, #5062ff, #b1abfc);" 
+            class="dark:hidden">
             </div>
+
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+                background: linear-gradient(to bottom, #fae294, #ffad50);" 
+                class="hidden dark:block">
+            </div> 
 
             <!-- Project Screenshot -->
             {% if project.screenshot_url %}
@@ -163,19 +181,19 @@
             {% endif %}
 
             <!-- Project Title -->
-            <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-amber-300 to-amber-600 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">
+            <p style="font-family: Poppins-Bold" class="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-amber-400 to-amber-700 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">
                 {{ project.title }}
             </p>
 
             <!-- Project Description -->
-            <p style="font-family: Poppins" class="text-white dark:text-gray-300 pt-2 flex-grow">
+            <p style="font-family: Poppins" class="text-gray-900 dark:text-gray-300 pt-2 flex-grow">
                 {{ project.description }}
             </p>
 
             <!-- View Project Link -->
             <a href="/courses/{{ course.slug }}/projects/{{ project.slug }}/"
-               style="font-family: 'Poppins-Bold';"
-               class="text-purple-400 dark:text-yellow-200 hover:underline block pt-4">
+               style="font-family: 'Poppins';"
+               class="text-blue-600 dark:text-yellow-200 hover:underline block pt-4">
                View Project →
             </a>
         </div>
@@ -191,11 +209,17 @@
     <p style="font-family: Poppins-Bold" class='text-4xl font-extrabold py-5 text-center md:text-start'>Final Project</p>     
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-5 md:px-0">
         {% for final_project in final_projects %}
-        <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-red-950 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
+        <div style="box-shadow:0 5px 30px 0 rgba(0,0,0,.05); position: relative;" class='bg-gray-400 dark:bg-gray-900 py-5 pl-6 pr-5 rounded-lg flex flex-col justify-between'>
             <!-- Rounded Gradient Border -->
-            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 4px; border-radius: 4px 0 0 4px; 
-                        background: linear-gradient(to bottom, #ffbd72, #fcf6a1);">
-            </div>                
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+            background: linear-gradient(to bottom, #5062ff, #b1abfc);" 
+            class="dark:hidden">
+            </div>
+
+            <div style="position: absolute; top: 0; left: 0; bottom: 0; width: 6px; border-radius: 6px 0 0 6px; 
+                background: linear-gradient(to bottom, #fae294, #ffad50);" 
+                class="hidden dark:block">
+            </div>               
 
             <!-- Final Project Screenshot -->
             {% if final_project.screenshot_url %}
@@ -203,19 +227,19 @@
             {% endif %}            
 
             <!-- Final Project Title -->
-            <p style="font-family: Poppins-Bold" class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-amber-300 to-amber-600 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">
+            <p style="font-family: Poppins-Bold" class="text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-amber-400 to-amber-700 dark:from-cyan-200 dark:via-blue-300 dark:to-blue-600">
                 {{ final_project.title }}
             </p>
 
             <!-- Final Project Description -->
-            <p style="font-family: Poppins" class="text-white dark:text-gray-300 pt-2 flex-grow">
+            <p style="font-family: Poppins" class="text-gray-900 dark:text-gray-300 pt-2 flex-grow">
                 {{ final_project.description }}
             </p>            
 
             <!-- View Final Project Link -->
             <a href="/courses/{{ course.slug }}/final-projects/{{ final_project.slug }}/" 
-               style="font-family: 'Poppins-Bold';" 
-               class="text-purple-400 dark:text-yellow-200 hover:underline block pt-4">
+               style="font-family: 'Poppins';" 
+               class="text-blue-600 dark:text-yellow-200 hover:underline block pt-4">
                View Final Project →
             </a>
         </div>
@@ -224,4 +248,11 @@
 </div>
 {% endif %}
 
+<iframe
+    src="{{ final_project.embed_url }}"
+    style="display: none; width: 0; height: 0;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
 {% endblock %}
